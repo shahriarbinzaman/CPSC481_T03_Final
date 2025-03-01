@@ -1,0 +1,85 @@
+:root {
+  --blue: #bad3ee;
+  --darkblue: rgb(53, 94, 169);
+  --indigo: #6610f2;
+  --purple: #6f42c1;
+  --pink: #e83e8c;
+  --red: #db535f;
+  --orange: #fd7e14;
+  --yellow: #ebd9a9;
+  --green: #bdf0c9;
+  --teal: #20c997;
+  --cyan: #bcd8dd;
+  --white: #fff;
+  --gray: #6c757d;
+  --gray-dark: #343a40;
+  --primary: #bad3ee;
+  --secondary: #f8f9fa;
+  --success: #bdf0c9;
+  --info: #bcd8dd;
+  --warning: #ebd9a9;
+  --danger: #db535f;
+  --light: #f8f9fa;
+  --dark: #343a40;
+  --breakpoint-xs: 0;
+  --breakpoint-sm: 576px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 992px;
+  --breakpoint-xl: 1200px;
+  --font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas,
+    "Liberation Mono", "Courier New", monospace;
+}
+
+.logo {
+  height: 5%;
+  width: 10%;
+}
+
+.carousel {
+  height: 60vh;
+}
+
+.carousel-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  gap: 10%;
+}
+
+.carousel-inner {
+  height: 100%;
+}
+
+.carousel-item {
+  height: 100%;
+}
+
+.carousel-content img {
+  width: 30vh;
+  height: 50vh;
+  object-fit: cover;
+}
+
+.carousel-indicators {
+  gap: 0.7rem;
+}
+
+.carousel-indicators button {
+  border: none;
+}
+
+.carousel-indicators .active {
+  background-color: var(--darkblue);
+}
+
+.options {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding-bottom: 10vh;
+}
