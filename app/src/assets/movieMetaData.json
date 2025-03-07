@@ -1,0 +1,70 @@
+{
+  "movies": [
+    {
+      "id": "movie1",
+      "title": "Captain America: The Winter Soldier",
+      "imagePath": "movie1.jpg",
+      "length": "2h 16m",
+      "genre": "Action, Adventure, Sci-Fi",
+      "showtimes": {
+        "IMAX": ["1:30 PM", "2:00 PM"],
+        "3D": ["5:30 PM", "4:45 PM"]
+      }
+    },
+    {
+      "id": "movie2",
+      "title": "Ne Zha 2",
+      "imagePath": "movie2.jpg",
+      "length": "1h 50m",
+      "genre": "Animation, Fantasy, Adventure",
+      "showtimes": {
+        "IMAX": ["8:45 PM", "5:30 PM"],
+        "3D": ["10:45 AM", "8:00 PM"]
+      }
+    },
+    {
+      "id": "movie3",
+      "title": "The Man From U.N.C.L.E",
+      "imagePath": "movie3.jpg",
+      "length": "1h 56m",
+      "genre": "Action, Adventure, Comedy",
+      "showtimes": {
+        "IMAX": ["9:45 PM", "3:45 PM"],
+        "3D": ["11:30 AM", "7:15 PM"]
+      }
+    },
+    {
+      "id": "movie4",
+      "title": "Casino Royale",
+      "imagePath": "movie4.webp",
+      "length": "2h 24m",
+      "genre": "Action, Thriller, Crime",
+      "showtimes": {
+        "IMAX": ["10:45 PM", "12:00 PM"],
+        "3D": ["4:15 PM", "8:45 PM"]
+      }
+    },
+    {
+      "id": "movie5",
+      "title": "Deadpool & Wolverine",
+      "imagePath": "movie5.jpg",
+      "length": "2h 12m",
+      "genre": "Action, Comedy, Superhero",
+      "showtimes": {
+        "IMAX": ["12:00 PM", "11:45 AM"],
+        "3D": ["7:15 PM", "7:45 PM"]
+      }
+    },
+    {
+      "id": "movie6",
+      "title": "Thunderbolts",
+      "imagePath": "movie6.jpg",
+      "length": "2h 10m",
+      "genre": "Action, Superhero, Adventure",
+      "showtimes": {
+        "IMAX": ["3:00 PM", "2:15 PM"],
+        "3D": ["5:45 PM", "8:45 PM"]
+      }
+    }
+  ]
+}

@@ -1,16 +1,16 @@
 import Logo from "../components/Logo";
-import Movies from "../components/Movies";
+import MovieCarousel from "../components/MovieCarousel";
 import { Button } from "react-bootstrap";
 import { FaUserCircle, FaSearch } from "react-icons/fa";
 import { MdRedeem } from "react-icons/md";
-import { IoFastFood, IoTicket } from "react-icons/io5";
+import { IoFastFood } from "react-icons/io5";
 import { RiRefund2Line } from "react-icons/ri";
 
-const Home = () => {
+export const Home = () => {
   return (
     <>
       <Logo className="logo" />
-      <Movies />
+      <MovieCarousel />
       <div className="options d-flex justify-content-around">
         <Button
           variant="primary"
@@ -46,13 +46,6 @@ const Home = () => {
         >
           <RiRefund2Line className="me-2" />
           Refund a Ticket
-        </Button>
-        <Button
-          variant="primary"
-          className="d-flex flex-column align-items-center"
-        >
-          <IoTicket className="me-2" />
-          Pickup Tickets
         </Button>
       </div>
     </>
