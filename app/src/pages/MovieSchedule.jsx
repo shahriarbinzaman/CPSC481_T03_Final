@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useRef } from 'react';
+import React, { useState, useMemo } from 'react';
 import { Button } from 'react-bootstrap';
 import { FaArrowLeft } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
@@ -16,6 +16,42 @@ const parseTime = (timeStr) => {
     hours = 0;
   }
   return hours * 60 + minutes;
+};
+
+// Simple on-screen keyboard component (permanent on-screen)
+const OnScreenKeyboard = ({ onKeyClick, onBackspace, onSpace, onClear }) => {
+  const keys = [
+    'Q','W','E','R','T','Y','U','I','O','P',
+    'A','S','D','F','G','H','J','K','L',
+    'Z','X','C','V','B','N','M'
+  ];
+
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: '10px' }}>
+      <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', maxWidth: '600px' }}>
+        {keys.map((key) => (
+          <button 
+            key={key}
+            onClick={() => onKeyClick(key)}
+            style={{ margin: '5px', padding: '10px 15px', fontSize: '16px' }}
+          >
+            {key}
+          </button>
+        ))}
+      </div>
+      <div style={{ marginTop: '10px' }}>
+        <button onClick={onSpace} style={{ margin: '5px', padding: '10px 15px', fontSize: '16px' }}>
+          Space
+        </button>
+        <button onClick={onBackspace} style={{ margin: '5px', padding: '10px 15px', fontSize: '16px' }}>
+          Backspace
+        </button>
+        <button onClick={onClear} style={{ margin: '5px', padding: '10px 15px', fontSize: '16px' }}>
+          Clear
+        </button>
+      </div>
+    </div>
+  );
 };
 
 const MovieSchedule = () => {
@@ -50,7 +86,7 @@ const MovieSchedule = () => {
   const now = new Date();
   const currentMinutes = now.getHours() * 60 + now.getMinutes();
 
-  // Filter events: only keep events that are upcoming and that match the search query.
+  // Filter events: only keep events that are upcoming and match the search query.
   const filteredEvents = useMemo(() => {
     let result = events.filter((event) => event.timeValue >= currentMinutes);
     if (searchQuery) {
@@ -61,58 +97,25 @@ const MovieSchedule = () => {
     return result;
   }, [searchQuery, events, currentMinutes]);
 
-  // --- Drag-to-Scroll Functionality ---
-  const scrollContainerRef = useRef(null);
-  const isDraggingRef = useRef(false);
-  const dragStartRef = useRef({ x: 0, y: 0, scrollTop: 0 });
-
-  const handleMouseDown = (e) => {
-    isDraggingRef.current = true;
-    dragStartRef.current = {
-      x: e.pageX,
-      y: e.pageY,
-      scrollTop: scrollContainerRef.current.scrollTop,
-    };
+  // Handlers for on-screen keyboard interactions
+  const handleKeyboardKeyClick = (key) => {
+    setSearchQuery((prev) => prev + key);
   };
 
-  const handleMouseMove = (e) => {
-    if (!isDraggingRef.current) return;
-    e.preventDefault();
-    const deltaY = e.pageY - dragStartRef.current.y;
-    scrollContainerRef.current.scrollTop = dragStartRef.current.scrollTop - deltaY;
+  const handleKeyboardBackspace = () => {
+    setSearchQuery((prev) => prev.slice(0, -1));
   };
 
-  const handleMouseUp = () => {
-    isDraggingRef.current = false;
+  const handleKeyboardSpace = () => {
+    setSearchQuery((prev) => prev + ' ');
   };
 
-  const handleMouseLeave = () => {
-    isDraggingRef.current = false;
-  };
-
-  const handleTouchStart = (e) => {
-    const touch = e.touches[0];
-    isDraggingRef.current = true;
-    dragStartRef.current = {
-      x: touch.pageX,
-      y: touch.pageY,
-      scrollTop: scrollContainerRef.current.scrollTop,
-    };
-  };
-
-  const handleTouchMove = (e) => {
-    if (!isDraggingRef.current) return;
-    const touch = e.touches[0];
-    const deltaY = touch.pageY - dragStartRef.current.y;
-    scrollContainerRef.current.scrollTop = dragStartRef.current.scrollTop - deltaY;
-  };
-
-  const handleTouchEnd = () => {
-    isDraggingRef.current = false;
+  const handleKeyboardClear = () => {
+    setSearchQuery('');
   };
 
   return (
-    <div className="d-flex flex-column vh-100">
+    <div className="d-flex flex-column vh-100 overflow-auto">
       {/* Back Button */}
       <Button
         variant="primary"
@@ -127,54 +130,75 @@ const MovieSchedule = () => {
         <Logo className="logo" />
       </div>
 
-      {/* Content Area */}
-      <div style={{ padding: '20px', marginTop: '60px', flex: 1, display: 'flex', flexDirection: 'column' }}>
-        <input
-          type="text"
-          placeholder="Search movies..."
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-          style={{ marginBottom: '20px', padding: '8px', width: '300px' }}
-        />
-        {/* Scrollable Container */}
+      {/* Main Content Container with Horizontal Margins */}
+      <div
+        style={{
+          padding: '20px',
+          marginTop: '60px',
+          flex: 1,
+          display: 'flex',
+          flexDirection: 'column',
+          maxWidth: '1200px',
+          marginLeft: 'auto',
+          marginRight: 'auto'
+        }}
+      >
+        {/* Permanent Search Bar and On-Screen Keyboard */}
+        <div>
+          <div className="d-flex justify-content-center" style={{ marginBottom: '10px' }}>
+            <input
+              type="text"
+              placeholder="Search movies..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              style={{ padding: '12px', width: '500px', fontSize: '18px' }}
+            />
+          </div>
+          <OnScreenKeyboard
+            onKeyClick={handleKeyboardKeyClick}
+            onBackspace={handleKeyboardBackspace}
+            onSpace={handleKeyboardSpace}
+            onClear={handleKeyboardClear}
+          />
+        </div>
+
+        {/* Vertical Scrollable Container for Filtered Events */}
         <div
-          ref={scrollContainerRef}
-          style={{ overflowY: 'auto', flex: 1 }}
-          onMouseDown={handleMouseDown}
-          onMouseMove={handleMouseMove}
-          onMouseUp={handleMouseUp}
-          onMouseLeave={handleMouseLeave}
-          onTouchStart={handleTouchStart}
-          onTouchMove={handleTouchMove}
-          onTouchEnd={handleTouchEnd}
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '30px',
+            marginTop: '20px'
+          }}
         >
-          <ul style={{ listStyle: 'none', padding: 0 }}>
-            {filteredEvents.map((event, index) => (
-              <li
-                key={`${event.id}-${index}`}
-                style={{
-                  marginBottom: '20px',
-                  padding: '10px',
-                  border: '1px solid #ccc',
-                  borderRadius: '4px',
-                }}
-              >
+          {filteredEvents.map((event, index) => (
+            <div
+              key={`${event.id}-${index}`}
+              style={{
+                width: '600px',
+                padding: '10px',
+                border: '1px solid #ccc',
+                borderRadius: '4px',
+                display: 'flex',
+                alignItems: 'center',
+                marginLeft: 'auto',
+                marginRight: 'auto'
+              }}
+            >
+              <img
+                src={require(`../assets/movies/${event.imagePath}`)}
+                alt={`${event.title} Poster`}
+                style={{ width: '150px', height: 'auto', marginRight: '20px' }}
+              />
+              <div>
                 <h3>{event.title}</h3>
-                <p>
-                  <strong>Format:</strong> {event.format}
-                </p>
-                <p>
-                  <strong>Showtime:</strong> {event.showtime}
-                </p>
-                <p>
-                  <strong>Genre:</strong> {event.genre}
-                </p>
-                <p>
-                  <strong>Length:</strong> {event.length}
-                </p>
-              </li>
-            ))}
-          </ul>
+                <p><strong>Format:</strong> {event.format}</p>
+                <p><strong>Showtime:</strong> {event.showtime}</p>
+                <p><strong>Genre:</strong> {event.genre}</p>
+                <p><strong>Length:</strong> {event.length}</p>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </div>
