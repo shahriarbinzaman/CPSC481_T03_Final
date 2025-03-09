@@ -26,33 +26,71 @@ const OnScreenKeyboard = ({ onKeyClick, onBackspace, onSpace, onClear }) => {
     'Z','X','C','V','B','N','M'
   ];
 
+  const keyButtonStyle = {
+    margin: '5px',
+    padding: '12px 18px',
+    fontSize: '16px',
+    backgroundColor: '#f0f0f0',
+    border: 'none',
+    borderRadius: '8px',
+    boxShadow: '0 2px 5px rgba(0,0,0,0.1)',
+    cursor: 'pointer',
+    outline: 'none',
+    transition: 'background-color 0.3s, transform 0.1s',
+  };
+
+  const actionButtonStyle = {
+    margin: '5px',
+    padding: '12px 18px',
+    fontSize: '16px',
+    backgroundColor: '#d0d0d0',
+    border: 'none',
+    borderRadius: '8px',
+    boxShadow: '0 2px 5px rgba(0,0,0,0.1)',
+    cursor: 'pointer',
+    outline: 'none',
+    transition: 'background-color 0.3s, transform 0.1s',
+  };
+
+  const containerStyle = {
+    backgroundColor: 'transparent',
+    padding: '15px',
+    borderRadius: '10px',
+    marginTop: '10px',
+    width: '100%',
+    maxWidth: '600px',
+  };
+
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: '10px' }}>
-      <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', maxWidth: '600px' }}>
-        {keys.map((key) => (
-          <button 
-            key={key}
-            onClick={() => onKeyClick(key)}
-            style={{ margin: '5px', padding: '10px 15px', fontSize: '16px' }}
-          >
-            {key}
+    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+      <div style={containerStyle}>
+        <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}>
+          {keys.map((key) => (
+            <button 
+              key={key}
+              onClick={() => onKeyClick(key)}
+              style={keyButtonStyle}
+            >
+              {key}
+            </button>
+          ))}
+        </div>
+        <div style={{ display: 'flex', justifyContent: 'center', marginTop: '10px' }}>
+          <button onClick={onSpace} style={actionButtonStyle}>
+            Space
           </button>
-        ))}
-      </div>
-      <div style={{ marginTop: '10px' }}>
-        <button onClick={onSpace} style={{ margin: '5px', padding: '10px 15px', fontSize: '16px' }}>
-          Space
-        </button>
-        <button onClick={onBackspace} style={{ margin: '5px', padding: '10px 15px', fontSize: '16px' }}>
-          Backspace
-        </button>
-        <button onClick={onClear} style={{ margin: '5px', padding: '10px 15px', fontSize: '16px' }}>
-          Clear
-        </button>
+          <button onClick={onBackspace} style={actionButtonStyle}>
+            Backspace
+          </button>
+          <button onClick={onClear} style={actionButtonStyle}>
+            Clear
+          </button>
+        </div>
       </div>
     </div>
   );
 };
+
 
 const MovieSchedule = () => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -173,31 +211,39 @@ const MovieSchedule = () => {
         >
           {filteredEvents.map((event, index) => (
             <div
-              key={`${event.id}-${index}`}
-              style={{
-                width: '600px',
-                padding: '10px',
-                border: '1px solid #ccc',
-                borderRadius: '4px',
-                display: 'flex',
-                alignItems: 'center',
-                marginLeft: 'auto',
-                marginRight: 'auto'
-              }}
-            >
-              <img
-                src={require(`../assets/movies/${event.imagePath}`)}
-                alt={`${event.title} Poster`}
-                style={{ width: '150px', height: 'auto', marginRight: '20px' }}
-              />
-              <div>
-                <h3>{event.title}</h3>
-                <p><strong>Format:</strong> {event.format}</p>
-                <p><strong>Showtime:</strong> {event.showtime}</p>
-                <p><strong>Genre:</strong> {event.genre}</p>
-                <p><strong>Length:</strong> {event.length}</p>
-              </div>
+            key={`${event.id}-${index}`}
+            style={{
+              width: '600px',
+              padding: '10px',
+              border: '1px solid #ccc',
+              borderRadius: '4px',
+              display: 'flex',
+              alignItems: 'center',
+              marginLeft: 'auto',
+              marginRight: 'auto'
+            }}
+          >
+            <img
+              src={require(`../assets/movies/${event.imagePath}`)}
+              alt={`${event.title} Poster`}
+              style={{ width: '150px', height: 'auto', marginRight: '20px' }}
+            />
+            <div style={{ textAlign: 'left' }}>
+              <h3>{event.title}</h3>
+              <p>
+                <strong>Format:</strong> {event.format}
+              </p>
+              <p>
+                <strong>Showtime:</strong> {event.showtime}
+              </p>
+              <p>
+                <strong>Genre:</strong> {event.genre}
+              </p>
+              <p>
+                <strong>Length:</strong> {event.length}
+              </p>
             </div>
+          </div>
           ))}
         </div>
       </div>
