@@ -4,6 +4,7 @@ import "./App.css";
 import { Home, MovieShowtimes } from "./pages";
 import RefundTicket from "./pages/Refund/RefundQR";
 import RefundTicketInfo from "./pages/Refund/RefundQRInfo";
+import MovieSchedule from "./pages/MovieSchedule";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Route path="/movie/:id" element={<MovieShowtimes />} />
         <Route path="/refund" element={<RefundTicket />} />
         <Route path="/refund/info" element={<RefundTicketInfo />} />
+        <Route path="/movie-schedule" element={<MovieSchedule />} />
       </Routes>
     </div>
   );
