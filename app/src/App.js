@@ -9,6 +9,7 @@ import ErrorPage from "./pages/ErrorPage";
 import EnjoyMovie from "./pages/EnjoyMovie";
 import PinPad from "./pages/PinPad";
 import SelectPayment from "./pages/SelectPayment";
+import OrderSummary from "./pages/OrderSummary";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Route path="/print" element={<EnjoyMovie />} />
         <Route path="/pin-pad" element={<PinPad />} />
         <Route path="/select-payment" element={<SelectPayment />} />
+        <Route path="/order-summary" element={<OrderSummary />} />
       </Routes>
     </div>
   );
