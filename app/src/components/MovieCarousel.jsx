@@ -4,11 +4,11 @@ import { useContext } from "react";
 
 import movieMetaData from "../assets/movieMetaData";
 import "./MovieCarousel.css";
-import { ShowtimeContext } from "../contexts";
+import { UserSelectionContext } from "../contexts";
 
 const MovieCarousels = () => {
   const navigate = useNavigate();
-  const { setMovieId, setMovieTitle } = useContext(ShowtimeContext);
+  const { setMovieId, setMovieTitle } = useContext(UserSelectionContext);
   /**
    * Create a 2D array, where each subarray contains 2 elements
    * @param {Array} arr the array to be chunked
@@ -29,7 +29,7 @@ const MovieCarousels = () => {
   const handleMovieClick = (id, title) => {
     setMovieId(id);
     setMovieTitle(title);
-    navigate("/movie");
+    navigate(`/movie/${id}`);
   };
 
   return (

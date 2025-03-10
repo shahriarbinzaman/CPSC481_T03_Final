@@ -1,7 +1,7 @@
 import { createContext, useState } from "react";
 
 const defaultContext = {
-  id: null,
+  movieId: null,
   movieTitle: "",
   format: "",
   date: "",
@@ -15,9 +15,9 @@ const defaultContext = {
   setSeat: () => {},
 };
 
-export const ShowtimeContext = createContext(defaultContext);
+export const UserSelectionContext = createContext(defaultContext);
 
-export const ShowtimeProvider = ({ children }) => {
+export const UserSelectionProvider = ({ children }) => {
   const [movieId, setMovieId] = useState(null);
   const [movieTitle, setMovieTitle] = useState("");
   const [format, setFormat] = useState("");
@@ -26,7 +26,7 @@ export const ShowtimeProvider = ({ children }) => {
   const [seat, setSeat] = useState([]);
 
   return (
-    <ShowtimeContext.Provider
+    <UserSelectionContext.Provider
       value={{
         movieId,
         movieTitle,
@@ -43,6 +43,6 @@ export const ShowtimeProvider = ({ children }) => {
       }}
     >
       {children}
-    </ShowtimeContext.Provider>
+    </UserSelectionContext.Provider>
   );
 };
