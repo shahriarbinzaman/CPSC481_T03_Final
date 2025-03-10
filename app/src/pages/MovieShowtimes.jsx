@@ -1,12 +1,15 @@
 import Logo from "../components/Logo";
-import { useParams } from "react-router-dom";
+import { useContext } from "react";
 
 import movieMetaData from "../assets/movieMetaData.json";
 import CustomDatePicker from "../components/CustomDatePicker";
+import { ShowtimeContext } from "../contexts";
 
 export const MovieShowtimes = () => {
-  const { id } = useParams();
-  const movieDetail = movieMetaData.movies.find((movie) => movie.id === id);
+  const { movieId } = useContext(ShowtimeContext);
+  const movieDetail = movieMetaData.movies.find(
+    (movie) => movie.id === movieId
+  );
 
   return (
     <div>
