@@ -30,7 +30,7 @@ const RefundTicket = () => {
         className="position-absolute top-0 start-0 m-3 d-flex align-items-center btn-lg"
         onClick={() => navigate(-1)}
       >
-        <FaArrowLeft size={24} />
+        <FaArrowLeft size={60} />
       </Button>
 
       {/* Logo (Centered at the Top) */}
@@ -56,7 +56,7 @@ const RefundTicket = () => {
           className="m-3 d-flex align-items-center btn-lg align-self-start"
           onClick={handleHomeClick}
         >
-          <FaHome size={24} />
+          <FaHome size={60} />
         </Button>
       </div>
     </div>
