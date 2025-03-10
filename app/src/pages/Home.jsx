@@ -31,6 +31,7 @@ export const Home = () => {
         <Button
           variant="primary"
           className="d-flex flex-column align-items-center"
+          onClick={() => navigate("/snack")}
         >
           <IoFastFood />
           Purchase Snacks
