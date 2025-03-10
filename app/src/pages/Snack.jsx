@@ -100,7 +100,6 @@ const Snack = () => {
               <Tab.Pane eventKey="snacks" style={{ flex: 1 }}>
                 <Card style={{ border:"1px solid #fff", borderRadius: "10px" }}>
                   <Card.Body style={{ backgroundColor: "#000", borderRadius: "10px" }}>
-                    <Card.Title>Snacks</Card.Title>
                     {items.snacks.map((snack) => (
                       <SnackItemCard
                         key={snack.name}
@@ -119,7 +118,6 @@ const Snack = () => {
               <Tab.Pane eventKey="drinks" style={{ flex: 1 }}>
                 <Card style={{ border:"1px solid #fff", borderRadius: "10px" }}>
                   <Card.Body style={{ backgroundColor: "#000", borderRadius: "10px" }}>
-                    <Card.Title>Drinks</Card.Title>
                     {items.drinks.map((drink) => (
                       <SnackItemCard
                         key={drink.name}
@@ -138,7 +136,6 @@ const Snack = () => {
               <Tab.Pane eventKey="combos" style={{ flex: 1 }}>
                 <Card style={{ border:"1px solid #fff", borderRadius: "10px" }}>
                   <Card.Body style={{ backgroundColor: "#000", borderRadius: "10px" }}>
-                    <Card.Title>Combos</Card.Title>
                     {items.combos.map((combo) => (
                       <SnackItemCard
                         key={combo.name}
@@ -159,28 +156,31 @@ const Snack = () => {
         {/* Order Summary Section */}
         <div className="order-summary" style={{ flex: 1, margin: "40px", padding: "20px", maxWidth:"30%", borderRadius: "10px", border: "1px solid white" }}>
           <h4>Order Summary</h4>
-          {Object.keys(order).map((category) => (
-            <div key={category} className="category">
-              <h5>{category.charAt(0).toUpperCase() + category.slice(1)}</h5>
-              {Object.keys(order[category]).map((item) => (
-                <div key={item}>
-                  {Object.keys(order[category][item]).map((size) => {
-                    const quantity = order[category][item][size];
-                    return (
-                      <div key={size} className="d-flex justify-content-between" style={{ marginBottom: "10px" }}>
-                        <span style={{ color: "#fff" }}>
-                          {item} ({size}): {quantity}
-                        </span>
-                        <span style={{ color: "#fff" }}>
-                          ${(items[category].find((i) => i.name === item).price[size] * quantity).toFixed(2)}
-                        </span>
-                      </div>
-                    );
-                  })}
-                </div>
-              ))}
-            </div>
-          ))}
+          {isOrderEmpty ? (
+            <p style={{ color: "#fff" }}>Your cart is empty. Please add items to your order.</p>
+          ) : (
+            Object.keys(order).map((category) => (
+              <div key={category} className="category">
+                {Object.keys(order[category]).map((item) => (
+                  <div key={item}>
+                    {Object.keys(order[category][item]).map((size) => {
+                      const quantity = order[category][item][size];
+                      return (
+                        <div key={size} className="d-flex justify-content-between" style={{ marginBottom: "10px" }}>
+                          <span style={{ color: "#fff" }}>
+                            {item} ({size}): {quantity}
+                          </span>
+                          <span style={{ color: "#fff" }}>
+                            ${(items[category].find((i) => i.name === item).price[size] * quantity).toFixed(2)}
+                          </span>
+                        </div>
+                      );
+                    })}
+                  </div>
+                ))}
+              </div>
+            ))
+          )}
           <div className="d-flex justify-content-between" style={{ marginTop: "20px", borderTop: "1px solid #fff", paddingTop: "10px" }}>
             <h5 style={{ color: "#fff" }}>Total</h5>
             <h5 style={{ color: "#fff" }}>${calculateTotal().toFixed(2)}</h5>
