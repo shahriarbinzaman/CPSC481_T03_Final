@@ -25,7 +25,7 @@ const CustomDatePicker = () => {
   }, [selectedDate, setDate]);
 
   return (
-    <div className="d-flex align-items-center mb-4">
+    <div className="d-flex align-items-center my-4 ml-5">
       <ArrowBackIosOutlinedIcon fontSize="large" onClick={prevDate} />
       <DesktopDatePicker
         label="view date"

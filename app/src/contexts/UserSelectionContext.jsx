@@ -6,13 +6,13 @@ const defaultContext = {
   format: "",
   date: "",
   showtime: "",
-  seat: [],
+  seats: [],
   setMovieId: () => {},
   setMovieTitle: () => {},
   setFormat: () => {},
   setDate: () => {},
   setShowtime: () => {},
-  setSeat: () => {},
+  setSeats: () => {},
 };
 
 export const UserSelectionContext = createContext(defaultContext);
@@ -23,7 +23,7 @@ export const UserSelectionProvider = ({ children }) => {
   const [format, setFormat] = useState("");
   const [date, setDate] = useState("");
   const [showtime, setShowtime] = useState("");
-  const [seat, setSeat] = useState([]);
+  const [seats, setSeats] = useState([]);
 
   return (
     <UserSelectionContext.Provider
@@ -33,13 +33,13 @@ export const UserSelectionProvider = ({ children }) => {
         format,
         date,
         showtime,
-        seat,
+        seats,
         setMovieId,
         setMovieTitle,
         setFormat,
         setDate,
         setShowtime,
-        setSeat,
+        setSeats,
       }}
     >
       {children}

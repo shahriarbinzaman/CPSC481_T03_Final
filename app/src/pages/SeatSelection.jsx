@@ -1,9 +1,8 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import ArrowBackOutlinedIcon from "@mui/icons-material/ArrowBackOutlined";
 import { UserSelectionContext } from "../contexts";
-import { Navbar } from "../components/Navbar";
 import Logo from "../components/Logo";
 import MovieMetaData from "../assets/movieMetaData.json";
 import CustomSeatPicker from "../components/CustomSeatPicker";
@@ -11,9 +10,7 @@ import "./SeatSelection.css";
 
 export const SeatSelection = () => {
   const navigate = useNavigate();
-  const { movieId, movieTitle, format, date, showtime, seat } =
-    useContext(UserSelectionContext);
-  const [selectedSeat, setSelectedSeat] = useState([]);
+  const { date, showtime } = useContext(UserSelectionContext);
 
   // using router id instead of context because context goes away on refresh or time out
   const movieIdFromParam = useParams().id;

@@ -1,6 +1,8 @@
 import { useContext } from "react";
 import { Button } from "react-bootstrap";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
+import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
+import ArrowBackOutlinedIcon from "@mui/icons-material/ArrowBackOutlined";
 
 import Logo from "../components/Logo";
 import movieMetaData from "../assets/movieMetaData.json";
@@ -20,7 +22,6 @@ export const MovieShowtimes = () => {
   const handleShowtimeClick = (format, time) => {
     setShowtime(time);
     setFormat(format);
-    console.log(format);
     navigate(`/movie/${movieId}/seat-selection`);
   };
 
@@ -28,18 +29,29 @@ export const MovieShowtimes = () => {
     <div>
       <Logo />
       <div className=" movie-showtime-page d-flex flex-column align-items-start justify-content-around mt-4">
-        <div className="d-flex mb-4">
+        <div className="d-flex m-3">
+          <ArrowBackOutlinedIcon
+            fontSize="large"
+            onClick={() => navigate(-1)}
+          />
+
           <img
             src={require(`../assets/movies/${movieDetail.imagePath}`)}
             alt={movieDetail.title}
-            className="movie-info"
+            className="movie-info flex-grow-3"
           />
-          <div className="d-flex flex-column  align-items-start">
+
+          <div className="d-flex flex-column  align-items-start movie-detail-content">
             <h1 className="mt-2 mb-5">{movieDetail.title}</h1>
             <h4>Length: {movieDetail.length}</h4>
             <h4>Genre: {movieDetail.genre}</h4>
           </div>
+
+          <Link to="/">
+            <HomeOutlinedIcon fontSize="large" />
+          </Link>
         </div>
+
         <CustomDatePicker />
         <div className="format-container d-flex justify-content-around">
           {Object.entries(movieDetail.showtimes).map(

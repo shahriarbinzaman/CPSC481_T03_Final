@@ -31,7 +31,7 @@ const Legend = () => {
 const CustomSeatPicker = ({ rows = 7, cols = 10 }) => {
   const [selectedSeats, setSelectedSeats] = useState([]);
   const unavailaleSeats = ["F6", "F7", "F8"];
-  const { setSeat, movieId } = useContext(UserSelectionContext);
+  const { setSeats, movieId } = useContext(UserSelectionContext);
   const navigate = useNavigate();
 
   const toggleSeat = (seatId) => {
@@ -43,7 +43,7 @@ const CustomSeatPicker = ({ rows = 7, cols = 10 }) => {
   };
 
   const handleConfirm = () => {
-    setSeat(selectedSeats);
+    setSeats(selectedSeats);
     navigate(`/movie/${movieId}/order-summary`);
   };
 
