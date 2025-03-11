@@ -31,15 +31,29 @@ const Legend = () => {
 const CustomSeatPicker = ({ rows = 7, cols = 10 }) => {
   const [selectedSeats, setSelectedSeats] = useState([]);
   const unavailaleSeats = ["F6", "F7", "F8"];
-  const { setSeats, movieId } = useContext(UserSelectionContext);
+  const { setSeats, movieId, childTickets, adultTickets } =
+    useContext(UserSelectionContext);
   const navigate = useNavigate();
 
+  const sumTickets = childTickets + adultTickets;
+
   const toggleSeat = (seatId) => {
-    setSelectedSeats((prev) =>
-      prev.includes(seatId)
-        ? prev.filter((s) => s !== seatId)
-        : [...prev, seatId]
-    );
+    setSelectedSeats((prev) => {
+      let updatedSeats;
+
+      if (prev.includes(seatId)) {
+        // Remove seat if already selected
+        updatedSeats = prev.filter((s) => s !== seatId);
+      } else {
+        // Add new seat with FIFO behavior if limit is reached
+        updatedSeats =
+          prev.length >= sumTickets
+            ? [...prev.slice(1), seatId]
+            : [...prev, seatId];
+      }
+
+      return updatedSeats;
+    });
   };
 
   const handleConfirm = () => {
@@ -50,7 +64,7 @@ const CustomSeatPicker = ({ rows = 7, cols = 10 }) => {
   return (
     <div className="d-flex">
       <div className="d-flex flex-column screen-seat">
-        <div className="screen-container mt-5">
+        <div className="screen-container">
           <svg
             width="100%"
             height="60px"
@@ -122,6 +136,10 @@ const CustomSeatPicker = ({ rows = 7, cols = 10 }) => {
         <Legend />
         <div className="selected-info">
           <strong>Selected Seats: </strong>
+          <br />
+          Adult Tickets: {adultTickets}
+          <br />
+          Child Tickets: {childTickets}
           <div className="selected-seats">
             <strong>{selectedSeats.join(", ") || ""}</strong>
           </div>

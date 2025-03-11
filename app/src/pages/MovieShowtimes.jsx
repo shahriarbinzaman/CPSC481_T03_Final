@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { Button } from "react-bootstrap";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
@@ -7,6 +7,7 @@ import ArrowBackOutlinedIcon from "@mui/icons-material/ArrowBackOutlined";
 import Logo from "../components/Logo";
 import movieMetaData from "../assets/movieMetaData.json";
 import CustomDatePicker from "../components/CustomDatePicker";
+import SelectTicketNumberModal from "../components/SelectTicketNumberModal";
 import { UserSelectionContext } from "../contexts";
 
 export const MovieShowtimes = () => {
@@ -15,14 +16,19 @@ export const MovieShowtimes = () => {
     (movie) => movie.id === movieId
   );
 
-  const { setShowtime, setFormat } = useContext(UserSelectionContext);
+  const [openModal, setOpenModal] = useState(false);
 
+  const { setShowtime, setFormat } = useContext(UserSelectionContext);
   const navigate = useNavigate();
 
   const handleShowtimeClick = (format, time) => {
     setShowtime(time);
     setFormat(format);
-    navigate(`/movie/${movieId}/seat-selection`);
+    setOpenModal(true);
+  };
+
+  const handleModalClose = () => {
+    setOpenModal(false);
   };
 
   return (
@@ -78,6 +84,10 @@ export const MovieShowtimes = () => {
           )}
         </div>
       </div>
+      <SelectTicketNumberModal
+        show={openModal}
+        handleClose={handleModalClose}
+      />
     </div>
   );
 };
