@@ -32,19 +32,32 @@ const Snack = () => {
     setOrder((prev) => {
       const quantity = prev[category][item]?.[size] || 0;
       if (quantity === 0) return prev;
-
+  
+      const updatedCategory = {
+        ...prev[category],
+        [item]: {
+          ...prev[category][item],
+          [size]: Math.max(0, quantity - 1),
+        },
+      };
+  
+      // Remove the size if its quantity is 0
+      if (updatedCategory[item][size] === 0) {
+        delete updatedCategory[item][size];
+      }
+  
+      // Remove the item if it has no sizes left
+      if (Object.keys(updatedCategory[item]).length === 0) {
+        delete updatedCategory[item];
+      }
+  
       return {
         ...prev,
-        [category]: {
-          ...prev[category],
-          [item]: {
-            ...prev[category][item],
-            [size]: Math.max(0, quantity - 1),
-          },
-        },
+        [category]: updatedCategory,
       };
     });
   };
+  
 
   const calculateTotal = () => {
     let total = 0;
