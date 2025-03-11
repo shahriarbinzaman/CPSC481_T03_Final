@@ -6,11 +6,32 @@
   padding-bottom: 10vh;
 }
 
-.movie-detail-image {
-  width: 20%;
+.movie-info {
+  width: 15%;
   height: auto;
-  margin-left: 10%;
   margin-right: 2%;
+  padding-left: 3%;
+}
+
+.movie-showtime-page {
+  margin-left: 5rem;
+}
+
+.format-container {
+  padding-left: 3%;
+  width: 100%;
+}
+
+.showtime-container {
+  width: 45%;
+}
+
+.center-line {
+  border-right: var(--primary) 1px solid;
+}
+
+.showtime-container button {
+  font-size: 1.5rem;
 }
 
 /* Font-size utilities */

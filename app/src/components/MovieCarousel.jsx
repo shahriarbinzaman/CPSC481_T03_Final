@@ -1,12 +1,14 @@
 import { Carousel } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
 
 import movieMetaData from "../assets/movieMetaData";
 import "./MovieCarousel.css";
+import { UserSelectionContext } from "../contexts";
 
 const MovieCarousels = () => {
   const navigate = useNavigate();
-
+  const { setMovieId, setMovieTitle } = useContext(UserSelectionContext);
   /**
    * Create a 2D array, where each subarray contains 2 elements
    * @param {Array} arr the array to be chunked
@@ -24,6 +26,12 @@ const MovieCarousels = () => {
 
   const movieInfo = chunkArray(movieMetaData.movies, 2);
 
+  const handleMovieClick = (id, title) => {
+    setMovieId(id);
+    setMovieTitle(title);
+    navigate(`/movie/${id}`);
+  };
+
   return (
     <Carousel>
       {movieInfo.map((chunk, index) => {
@@ -36,7 +44,7 @@ const MovieCarousels = () => {
                     src={require(`../assets/movies/${movie.imagePath}`)}
                     alt={movie.title}
                     key={index}
-                    onClick={() => navigate(`/movie/${movie.id}`)}
+                    onClick={() => handleMovieClick(movie.id, movie.title)}
                   />
                 );
               })}

@@ -1,0 +1,68 @@
+.seat-row {
+  margin: 1rem;
+}
+
+.screen-seat {
+  flex-grow: 3;
+}
+
+.additional-info {
+  flex-grow: 2;
+  padding: 5% 5% 0 0;
+  gap: 1rem;
+  font-size: larger;
+}
+
+.selected-info {
+  border-radius: 20px;
+  border: var(--primary) 1px solid;
+  justify-content: center;
+  width: 300px; /* Optional: Adjust width as needed */
+}
+
+.selected-seats {
+  display: flex;
+  flex-wrap: wrap; /* Allows wrapping to the next line */
+  gap: 0.5rem; /* Adds spacing between items */
+  justify-content: center;
+}
+
+.legend {
+  border-radius: 20px;
+  border: var(--primary) 1px solid;
+  justify-content: center;
+  gap: 1rem;
+  width: 300px;
+}
+
+.legend > div {
+  gap: 1rem;
+  padding-left: 30%;
+}
+
+.screen-seat {
+  font-weight: 400;
+  font-size: larger;
+}
+
+.seat.selected {
+  color: var(--success);
+}
+
+.seat.unavailable {
+  color: white;
+  cursor: not-allowed; /* Prevent interaction */
+  opacity: 0.6; /* Faded look */
+  pointer-events: none; /* Prevent clicking */
+}
+
+.inactive {
+  cursor: not-allowed;
+  opacity: 0.6;
+  pointer-events: none;
+  color: var(--grey);
+}
+
+.confirm {
+    width: 300px;
+}

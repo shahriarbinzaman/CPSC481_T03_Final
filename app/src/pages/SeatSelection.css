@@ -1,0 +1,11 @@
+.movie-detail-content {
+  text-align: left;
+  width: 100%;
+  margin-left: 2%;
+}
+
+.movie-img {
+  width: 10%;
+  height: auto;
+  margin-left: 2%;
+}

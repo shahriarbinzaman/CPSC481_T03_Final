@@ -6321,7 +6321,7 @@ button.bg-dark:focus {
 }
 
 .border-light {
-  border-color: #f8f9fa !important;
+  border-color: var(--primary) !important;
 }
 
 .border-dark {
