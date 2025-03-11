@@ -5,18 +5,14 @@ import { useNavigate } from 'react-router-dom';
 import Logo from '../components/Logo';
 import movieData from '../assets/movieMetaData.json';
 
-const OrderSummary = () => {
+const SelectPayment = () => {
   const navigate = useNavigate();
 
-  // CHANGE THIS ONCE LOCAL CONTEXT WORKS!!!
   // Hard-coded values for testing
   const movieId = "movie1";
   const showtime = "1:30PM";
   const seats = "E10, E11";
-  // Hard-coded price breakdown numbers
-  const subtotal = 400;
-  const taxes = 50;
-  const totalPrice = 450;
+  const totalPrice = 666;
 
   // Retrieve the movie details based on the movieId.
   const movie = movieData.movies.find((m) => m.id === movieId);
@@ -42,10 +38,8 @@ const OrderSummary = () => {
 
       {/* Main Content */}
       <div className="flex-grow-1 d-flex flex-column align-items-center justify-content-center">
-        {/* Title */}
-        <h1 style={{ marginBottom: '30px' }}>ORDER SUMMARY</h1>
+      <h1 style={{ marginBottom: '30px' }}>PAYMENT OPTIONS</h1>
 
-        {/* Movie Details */}
         {movie ? (
           <div
             style={{
@@ -73,7 +67,7 @@ const OrderSummary = () => {
           <p>Movie not found.</p>
         )}
 
-        {/* Bottom Section: Price Breakdown & Action Buttons */}
+        {/* Bottom Section: Total Price & Payment Options */}
         <div
           style={{
             display: 'flex',
@@ -83,52 +77,70 @@ const OrderSummary = () => {
             marginTop: '30px',
           }}
         >
-          {/* Price Breakdown (Bottom Left) */}
+          {/* Total Price (Bottom Left) */}
           <div style={{ textAlign: 'left' }}>
-            <p style={{ fontSize: '1.5rem', margin: 0 }}>
-              <strong>Subtotal:</strong> ${subtotal}
-            </p>
-            <p style={{ fontSize: '1.5rem', margin: 0 }}>
-              <strong>Taxes:</strong> ${taxes}
-            </p>
             <p style={{ fontSize: '2rem', margin: 0 }}>
-              <strong>Total:</strong> ${totalPrice}
+              <strong>Total Price:</strong> ${totalPrice}
             </p>
           </div>
 
-          {/* Action Buttons (Bottom Right) */}
+          {/* Payment Options (Bottom Right) */}
           <div
             style={{
               display: 'flex',
               flexDirection: 'column',
+              alignItems: 'flex-end',
               gap: '10px',
               width: '250px',
-              alignItems: 'flex-end',
             }}
           >
+            <h3 style={{ margin: 0, width: '100%', textAlign: 'center' }}>
+              Choose your payment option:
+            </h3>
             <Button
               variant="primary"
               size="lg"
-              onClick={() => navigate('/error')}
+              onClick={() => navigate('/pin-pad')}
               style={{
                 width: '100%',
                 padding: '30px',
-                textAlign: 'center',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
               }}
             >
-              Add Snacks
+              Debit
+              <img
+                src={require('../assets/FinantialLogos/InteracLogo.png')}
+                alt="Interac Logo"
+                style={{ width: '50px', height: 'auto', marginLeft: '10px' }}
+              />
             </Button>
             <Button
               variant="primary"
               size="lg"
-              onClick={() => navigate('/select-payment')}
+              onClick={() => navigate('/pin-pad')}
               style={{
                 width: '100%',
                 padding: '30px',
-                textAlign: 'center',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
               }}
             >
-              Proceed to Payment
+              Credit
+              <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
+                <img
+                  src={require('../assets/FinantialLogos/MastercardLogo.png')}
+                  alt="Mastercard Logo"
+                  style={{ width: '50px', height: 'auto' }}
+                />
+                <img
+                  src={require('../assets/FinantialLogos/VisaLogo.png')}
+                  alt="Visa Logo"
+                  style={{ width: '50px', height: 'auto' }}
+                />
+              </div>
             </Button>
           </div>
         </div>
@@ -148,4 +160,4 @@ const OrderSummary = () => {
   );
 };
 
-export default OrderSummary;
+export default SelectPayment;

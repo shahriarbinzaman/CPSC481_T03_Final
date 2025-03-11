@@ -33,3 +33,39 @@
 .showtime-container button {
   font-size: 1.5rem;
 }
+
+/* Font-size utilities */
+.fs-1 {
+  font-size: 2.5rem !important;
+}
+.fs-2 {
+  font-size: 2rem !important;
+}
+.fs-3 {
+  font-size: 1.75rem !important;
+}
+.fs-4 {
+  font-size: 1.5rem !important;
+}
+.fs-5 {
+  font-size: 1.25rem !important;
+}
+.fs-6 {
+  font-size: 1rem !important;
+}
+
+/* Additional font sizes for more flexibility */
+.fs-7 {
+  font-size: 0.875rem !important;
+}
+.fs-8 {
+  font-size: 0.75rem !important;
+}
+.fs-9 {
+  font-size: 0.625rem !important;
+}
+
+/* Font weight utilities */
+.fw-bold {
+  font-weight: bold !important;
+}
