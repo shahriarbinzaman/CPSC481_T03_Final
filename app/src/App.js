@@ -3,8 +3,9 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 
 import "./App.css";
-import { Home, MovieShowtimes, SeatSelection } from "./pages";
+import { Home, MovieShowtimes, SeatSelection, OrderSummary } from "./pages";
 import { UserSelectionProvider } from "./contexts";
+import CustomSeatPicker from "./components/CustomSeatPicker";
 
 function App() {
   return (
@@ -16,7 +17,9 @@ function App() {
             <Route path="/movie/:id">
               <Route index element={<MovieShowtimes />} />
               <Route path="seat-selection" element={<SeatSelection />} />
+              <Route path="order-summary" element={<OrderSummary />} />
             </Route>
+            <Route path="/test" element={<CustomSeatPicker />} />
           </Routes>
         </UserSelectionProvider>
       </LocalizationProvider>

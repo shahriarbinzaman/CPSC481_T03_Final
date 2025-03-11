@@ -6,8 +6,8 @@ export const Navbar = () => {
   const navigate = useNavigate();
   return (
     <nav className="navbar">
-      <div className="container d-flex justify-content-end">
-        <ArrowBackOutlinedIcon onClick={() => navigate(-1)} />
+      <div className="d-flex justify-content-between w-100">
+        <ArrowBackOutlinedIcon fontSize="large" onClick={() => navigate(-1)} />
 
         <Link to="/">
           <HomeOutlinedIcon fontSize="large" />
