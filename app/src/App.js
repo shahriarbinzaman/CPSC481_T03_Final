@@ -13,6 +13,7 @@ import EnjoyMovie from "./pages/EnjoyMovie";
 import PinPad from "./pages/PinPad";
 import SelectPayment from "./pages/SelectPayment";
 import OrderSummary from "./pages/OrderSummary";
+import Snack from "./pages/Snack";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
               <Route path="seat-selection" element={<SeatSelection />} />
               <Route path="order-summary" element={<OrderSummary />} />
             </Route>
+            <Route path="/snack" element={<Snack />} />
             <Route path="/refund" element={<RefundTicket />} />
             <Route path="/refund/info" element={<RefundTicketInfo />} />
             <Route path="/movie-schedule" element={<MovieSchedule />} />
