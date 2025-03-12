@@ -2,7 +2,7 @@ import { Modal, Button } from "react-bootstrap";
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { UserSelectionContext } from "../contexts";
+import { UserSelectionContext } from "../context";
 import NumberStepper from "./NumberStepper";
 
 const SeletctTicketNumberModal = ({ show, handleClose }) => {
