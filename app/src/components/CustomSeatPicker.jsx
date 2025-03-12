@@ -4,7 +4,7 @@ import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
 import "./CustomSeatPicker.css";
-import { UserSelectionContext } from "../contexts";
+import { UserSelectionContext } from "../context";
 
 const Legend = () => {
   return (
@@ -105,16 +105,18 @@ const CustomSeatPicker = ({ rows = 7, cols = 10 }) => {
                 {String.fromCharCode(65 + rowIndex)}
               </span>
               {[...Array(cols)].map((_, colIndex) => {
-                const seatId = `${String.fromCharCode(65 + rowIndex)}${colIndex + 1}`;
+                const seatId = `${String.fromCharCode(65 + rowIndex)}${
+                  colIndex + 1
+                }`;
                 const selected = selectedSeats.includes(seatId);
                 const unavailable = unavailaleSeats.includes(seatId);
 
                 return (
                   <Button
                     key={seatId}
-                    className={`seat ${
-                      selected ? "selected" : ""
-                    } ${unavailable ? "unavailable" : ""} d-flex flex-column align-items-center justify-content-center ${
+                    className={`seat ${selected ? "selected" : ""} ${
+                      unavailable ? "unavailable" : ""
+                    } d-flex flex-column align-items-center justify-content-center ${
                       colIndex === 4 ? "mr-5" : ""
                     }`}
                     onClick={() => toggleSeat(seatId)}

@@ -3,7 +3,7 @@ const mockUsers = [
     fullName: "John Doe",
     email: "john.doe@gmail.com",
     membershipID: "123456",
-    credits: 5,
+    credits: 15,
   },
   {
     fullName: "Jane Smith",

@@ -5,7 +5,7 @@ import { TextField } from "@mui/material";
 import ArrowBackIosOutlinedIcon from "@mui/icons-material/ArrowBackIosOutlined";
 import ArrowForwardIosOutlinedIcon from "@mui/icons-material/ArrowForwardIosOutlined";
 
-import { UserSelectionContext } from "../contexts";
+import { UserSelectionContext } from "../context";
 
 const CustomDatePicker = () => {
   const [selectedDate, setSelectedDate] = useState(dayjs());

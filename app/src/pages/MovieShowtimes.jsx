@@ -8,7 +8,7 @@ import Logo from "../components/Logo";
 import movieMetaData from "../assets/movieMetaData.json";
 import CustomDatePicker from "../components/CustomDatePicker";
 import SelectTicketNumberModal from "../components/SelectTicketNumberModal";
-import { UserSelectionContext } from "../contexts";
+import { UserSelectionContext } from "../context";
 
 export const MovieShowtimes = () => {
   const movieId = useParams().id;

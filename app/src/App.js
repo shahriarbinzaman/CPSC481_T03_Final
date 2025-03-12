@@ -4,7 +4,7 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 
 import "./App.css";
 import { Home, MovieShowtimes, SeatSelection } from "./pages";
-import { UserSelectionProvider } from "./contexts";
+import { UserSelectionProvider } from "./context";
 import RefundTicket from "./pages/Refund/RefundQR";
 import RefundTicketInfo from "./pages/Refund/RefundQRInfo";
 import MovieSchedule from "./pages/MovieSchedule";

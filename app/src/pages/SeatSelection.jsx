@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import ArrowBackOutlinedIcon from "@mui/icons-material/ArrowBackOutlined";
-import { UserSelectionContext } from "../contexts";
+import { UserSelectionContext } from "../context";
 import Logo from "../components/Logo";
 import MovieMetaData from "../assets/movieMetaData.json";
 import CustomSeatPicker from "../components/CustomSeatPicker";

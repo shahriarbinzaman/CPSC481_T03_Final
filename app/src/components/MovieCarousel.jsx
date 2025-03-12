@@ -4,7 +4,7 @@ import { useContext } from "react";
 
 import movieMetaData from "../assets/movieMetaData";
 import "./MovieCarousel.css";
-import { UserSelectionContext } from "../contexts";
+import { UserSelectionContext } from "../context";
 
 const MovieCarousels = () => {
   const navigate = useNavigate();

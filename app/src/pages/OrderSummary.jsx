@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 import Logo from "../components/Logo";
 import movieData from "../assets/movieMetaData.json";
-import { UserSelectionContext } from "../contexts";
+import { UserSelectionContext } from "../context";
 
 const OrderSummary = () => {
   const navigate = useNavigate();
@@ -108,7 +108,7 @@ const OrderSummary = () => {
             <Button
               variant="primary"
               size="lg"
-              onClick={() => navigate("/error")}
+              onClick={() => navigate("/snack")}
               style={{
                 width: "100%",
                 padding: "30px",
