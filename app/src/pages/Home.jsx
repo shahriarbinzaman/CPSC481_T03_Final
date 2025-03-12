@@ -3,7 +3,6 @@ import Logo from "../components/Logo";
 import MovieCarousel from "../components/MovieCarousel";
 import { Button } from "react-bootstrap";
 import { FaUserCircle, FaSearch } from "react-icons/fa";
-import { MdRedeem } from "react-icons/md";
 import { IoFastFood } from "react-icons/io5";
 import { RiRefund2Line } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
@@ -17,20 +16,25 @@ export const Home = () => {
   const { currentUser } = useUser();
 
   return (
-    <>
-      <div className="header d-flex justify-content-between p-3">
+    <div className="home-container d-flex flex-column vh-100">
+      <div
+        className="header d-flex justify-content-between align-items-center px-3"
+        style={{ height: "60px" }}
+      >
         <div>
           {currentUser ? (
             <>
-              <h5>Welcome, {currentUser.fullName}</h5>
-              <p>Credits: {currentUser.credits}</p>
+              <h5 className="m-0">Welcome, {currentUser.fullName}</h5>
+              <p className="m-0">Credits: {currentUser.credits}</p>
             </>
           ) : (
-            <h5>Welcome, Guest</h5>
+            <h5 className="m-0">Welcome, Guest</h5>
           )}
         </div>
       </div>
-      <Logo className="logo" />
+      <div className="d-flex justify-content-center mt-2">
+        <Logo className="logo" />
+      </div>
       <MovieCarousel />
       <div className="options d-flex justify-content-around">
         <Button
@@ -40,13 +44,6 @@ export const Home = () => {
         >
           <FaUserCircle className="me-2" />
           Login
-        </Button>
-        <Button
-          variant="primary"
-          className="d-flex flex-column align-items-center"
-        >
-          <MdRedeem className="me-2" />
-          Redeem Movie
         </Button>
         <Button
           variant="primary"
@@ -74,9 +71,8 @@ export const Home = () => {
         </Button>
       </div>
 
-      {/* Login Popup */}
       <LoginPopup show={showLogin} handleClose={() => setShowLogin(false)} />
-    </>
+    </div>
   );
 };
 

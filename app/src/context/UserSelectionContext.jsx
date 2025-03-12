@@ -9,6 +9,7 @@ const defaultContext = {
   seats: [],
   adultTickets: 0,
   childTickets: 0,
+  snacks: {},
   setMovieId: () => {},
   setMovieTitle: () => {},
   setFormat: () => {},
@@ -17,6 +18,7 @@ const defaultContext = {
   setSeats: () => {},
   setAdultTickets: () => {},
   setChildTickets: () => {},
+  setSnacks: () => {},
 };
 
 export const UserSelectionContext = createContext(defaultContext);
@@ -30,6 +32,11 @@ export const UserSelectionProvider = ({ children }) => {
   const [seats, setSeats] = useState([]);
   const [adultTickets, setAdultTickets] = useState(0);
   const [childTickets, setChildTickets] = useState(0);
+  const [snacks, setSnacks] = useState({
+    snacks: {},
+    drinks: {},
+    combos: {},
+  });
 
   return (
     <UserSelectionContext.Provider
@@ -42,6 +49,7 @@ export const UserSelectionProvider = ({ children }) => {
         seats,
         adultTickets,
         childTickets,
+        snacks,
         setMovieId,
         setMovieTitle,
         setFormat,
@@ -50,6 +58,7 @@ export const UserSelectionProvider = ({ children }) => {
         setSeats,
         setAdultTickets,
         setChildTickets,
+        setSnacks,
       }}
     >
       {children}
