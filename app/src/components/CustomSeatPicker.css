@@ -1,9 +1,9 @@
 .seat-row {
-  margin: 1rem;
+  margin: 0.75rem;
 }
 
 .screen-seat {
-  flex-grow: 3;
+  flex-grow: 4;
 }
 
 .additional-info {
@@ -64,5 +64,5 @@
 }
 
 .confirm {
-    width: 300px;
+  width: 300px;
 }
