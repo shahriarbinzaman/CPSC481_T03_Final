@@ -17,6 +17,7 @@ export const Home = () => {
 
   return (
     <div className="home-container d-flex flex-column vh-100">
+      <Logo className="logo" />
       <div
         className="header d-flex justify-content-between align-items-center px-3"
         style={{ height: "60px" }}
@@ -31,9 +32,6 @@ export const Home = () => {
             <h5 className="m-0">Welcome, Guest</h5>
           )}
         </div>
-      </div>
-      <div className="d-flex justify-content-center mt-2">
-        <Logo className="logo" />
       </div>
       <MovieCarousel />
       <div className="options d-flex justify-content-around">

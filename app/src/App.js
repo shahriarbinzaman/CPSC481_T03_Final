@@ -28,8 +28,10 @@ function App() {
               <Route path="order-summary" element={<OrderSummary />} />
             </Route>
             <Route path="/snack" element={<Snack />} />
-            <Route path="/refund" element={<RefundTicket />} />
-            <Route path="/refund/info" element={<RefundTicketInfo />} />
+            <Route path="/refund">
+              <Route index element={<RefundTicket />} />
+              <Route path="info" element={<RefundTicketInfo />} />
+            </Route>
             <Route path="/movie-schedule" element={<MovieSchedule />} />
             <Route path="/error" element={<ErrorPage />} />
             <Route path="/print" element={<EnjoyMovie />} />

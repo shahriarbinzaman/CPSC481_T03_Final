@@ -34,8 +34,8 @@ export const MovieShowtimes = () => {
   return (
     <div>
       <Logo />
-      <div className=" movie-showtime-page d-flex flex-column align-items-start justify-content-around mt-4">
-        <div className="d-flex m-3">
+      <div className="d-flex flex-column">
+        <div className="d-flex mb-4">
           <ArrowBackOutlinedIcon
             fontSize="large"
             onClick={() => navigate(-1)}
@@ -44,7 +44,7 @@ export const MovieShowtimes = () => {
           <img
             src={require(`../assets/movies/${movieDetail.imagePath}`)}
             alt={movieDetail.title}
-            className="movie-info flex-grow-3"
+            className="movie-img flex-grow-3"
           />
 
           <div className="d-flex flex-column  align-items-start movie-detail-content">

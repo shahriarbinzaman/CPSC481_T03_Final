@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { Button } from "react-bootstrap";
-import { FaArrowLeft, FaHome } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import { Button } from "react-bootstrap";
 import Logo from "../../components/Logo";
 import RefundConfirmationModal from "../../components/RefundConfirmationModal"; // Import the modal component
+import Navbar from "../../components/Navbar";
 
 const RefundTicketInfo = () => {
   const navigate = useNavigate();
@@ -24,19 +24,8 @@ const RefundTicketInfo = () => {
 
   return (
     <div className="d-flex flex-column vh-100 overflow-hidden">
-      {/* Back Button */}
-      <Button
-        variant="primary"
-        className="position-absolute top-0 start-0 m-3 d-flex align-items-center btn-lg"
-        onClick={() => navigate(-1)}
-      >
-        <FaArrowLeft size={60} />
-      </Button>
-
-      {/* Logo */}
-      <div className="d-flex justify-content-center mt-3">
-        <Logo className="logo" />
-      </div>
+      <Logo className="logo" />
+      <Navbar />
 
       {/* Refund Info */}
       <div className="d-flex flex-column align-items-center justify-content-center flex-grow-1">
@@ -89,17 +78,6 @@ const RefundTicketInfo = () => {
             Request Refund
           </Button>
         </div>
-      </div>
-
-      {/* Home Button */}
-      <div className="d-flex">
-        <Button
-          variant="primary"
-          className="m-3 d-flex align-items-center btn-lg"
-          onClick={handleHomeClick}
-        >
-          <FaHome size={60} />
-        </Button>
       </div>
 
       {/* Refund Confirmation Modal */}

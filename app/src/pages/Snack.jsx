@@ -1,11 +1,11 @@
 import { useContext } from "react";
 import { Button, Card, Tab, Nav } from "react-bootstrap";
-import { FaArrowLeft } from "react-icons/fa";
 import Logo from "../components/Logo";
 import { snacksData } from "../components/Snacks";
 import { useNavigate } from "react-router-dom";
 import SnackItemCard from "../components/SnackItemCard";
 import { UserSelectionContext } from "../context/UserSelectionContext";
+import Navbar from "../components/Navbar";
 
 const Snack = () => {
   const { snacks, setSnacks } = useContext(UserSelectionContext);
@@ -81,14 +81,8 @@ const Snack = () => {
 
   return (
     <div className="d-flex flex-column vh-100 overflow-hidden">
-      <Button
-        variant="primary"
-        className="position-fixed top-0 start-0 m-3 d-flex align-items-center btn-lg"
-        onClick={() => navigate(-1)}
-      >
-        <FaArrowLeft size={60} />
-      </Button>
       <Logo className="logo" />
+      <Navbar />
       <div className="d-flex justify-content-center align-items-start vh-100 p-4">
         <div
           className="content"

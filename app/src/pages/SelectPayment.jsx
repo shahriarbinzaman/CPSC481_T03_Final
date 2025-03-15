@@ -1,16 +1,17 @@
 import React, { useContext, useState } from "react";
-import { Button, Alert } from "react-bootstrap";
-import { FaArrowLeft, FaHome } from "react-icons/fa";
+import { Button, Alert, NavbarBrand } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import Logo from "../components/Logo";
 import movieData from "../assets/movieMetaData.json";
 import { UserSelectionContext } from "../context/UserSelectionContext";
 import { useUser } from "../context/UserContext";
 import { snacksData } from "../components/Snacks";
+import Navbar from "../components/Navbar";
 
 const SelectPayment = () => {
   const navigate = useNavigate();
-  const { movieId, showtime, seats, snacks } = useContext(UserSelectionContext);
+  const { movieId, showtime, seats, snacks, date } =
+    useContext(UserSelectionContext);
   const { currentUser, setCurrentUser } = useUser();
 
   const movie = movieData.movies.find((m) => m.id === movieId);
@@ -59,25 +60,14 @@ const SelectPayment = () => {
   return (
     <div
       className="d-flex flex-column vh-100 overflow-auto"
-      style={{ position: "relative", padding: "20px" }}
+      style={{ position: "relative" }}
     >
-      {/* Back Button (Top Left) */}
-      <Button
-        variant="primary"
-        className="position-absolute top-0 start-0 m-3 d-flex align-items-center btn-lg"
-        onClick={() => navigate(-1)}
-      >
-        <FaArrowLeft size={60} />
-      </Button>
-
-      {/* Logo (Centered at the Top) */}
-      <div className="d-flex justify-content-center mt-3">
-        <Logo className="logo" />
-      </div>
+      <Logo className="logo" />
+      <Navbar />
 
       {/* Main Content */}
-      <div className="container mt-5">
-        <h1 className="text-center mb-4">PAYMENT OPTIONS</h1>
+      <div className="container">
+        <h2 className="text-center mb-4">PAYMENT OPTIONS</h2>
 
         <div className="row">
           {/* Left Column - Order Summary */}
@@ -87,23 +77,20 @@ const SelectPayment = () => {
 
               {/* Movie Order Summary (Only if seats are selected) */}
               {seats.length > 0 && movie && (
-                <div className="mb-3">
-                  <div className="d-flex align-items-center mb-3">
+                <div>
+                  <div className="d-flex align-items-center">
                     <img
                       src={require(`../assets/movies/${movie.imagePath}`)}
                       alt={`${movie.title} Poster`}
                       style={{
-                        width: "120px",
-                        height: "auto",
+                        width: "auto",
+                        height: "100px",
                         marginRight: "15px",
                       }}
                     />
-                    <div>
-                      <h4>{movie.title}</h4>
-                      <p>
-                        <strong>Showtime:</strong> {showtime}
-                      </p>
-                    </div>
+                    <span>
+                      <strong>{movie.title}</strong>, {date}, {showtime}
+                    </span>
                   </div>
 
                   {/* Individual Ticket Breakdown */}
@@ -180,8 +167,8 @@ const SelectPayment = () => {
           </div>
 
           {/* Right Column - Payment Options */}
-          <div className="col-md-6">
-            <div className="payment-options p-3 border rounded bg-light">
+          <div className="col-md-6 ">
+            <div className="payment-options p-3 border rounded">
               <h3>Choose Payment Option</h3>
 
               {/* Redeem Credits Option (Only if logged in and has 10 credits) */}
