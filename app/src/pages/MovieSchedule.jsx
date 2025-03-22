@@ -20,7 +20,8 @@ const parseTime = (timeStr) => {
 
 // Simple on-screen keyboard component (permanent on-screen)
 const OnScreenKeyboard = ({ onKeyClick, onBackspace, onSpace, onClear }) => {
-  const keys = [
+  const numberKeys = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
+  const letterKeys = [
     "Q",
     "W",
     "E",
@@ -85,34 +86,25 @@ const OnScreenKeyboard = ({ onKeyClick, onBackspace, onSpace, onClear }) => {
   };
 
   return (
-    <div
-      style={{ display: "flex", flexDirection: "column", alignItems: "center" }}
-    >
+    <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
       <div style={containerStyle}>
-        <div
-          style={{
-            display: "flex",
-            flexWrap: "wrap",
-            justifyContent: "center",
-          }}
-        >
-          {keys.map((key) => (
-            <button
-              key={key}
-              onClick={() => onKeyClick(key)}
-              style={keyButtonStyle}
-            >
+        {/* Numbers Row */}
+        <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center" }}>
+          {numberKeys.map((key) => (
+            <button key={key} onClick={() => onKeyClick(key)} style={keyButtonStyle}>
               {key}
             </button>
           ))}
         </div>
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            marginTop: "10px",
-          }}
-        >
+        {/* Letters Row */}
+        <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center" }}>
+          {letterKeys.map((key) => (
+            <button key={key} onClick={() => onKeyClick(key)} style={keyButtonStyle}>
+              {key}
+            </button>
+          ))}
+        </div>
+        <div style={{ display: "flex", justifyContent: "center", marginTop: "10px" }}>
           <button onClick={onSpace} style={actionButtonStyle}>
             Space
           </button>
