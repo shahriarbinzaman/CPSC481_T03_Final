@@ -46,21 +46,14 @@
 }
 
 .seat.selected {
-  color: var(--success);
+  color: var(--teal);
 }
 
-.seat.unavailable {
-  color: white;
+.seat.inactive {
+  color: var(--darkgrey);
   cursor: not-allowed; /* Prevent interaction */
-  opacity: 0.6; /* Faded look */
+  opacity: 0.5; /* Faded look */
   pointer-events: none; /* Prevent clicking */
-}
-
-.inactive {
-  cursor: not-allowed;
-  opacity: 0.6;
-  pointer-events: none;
-  color: var(--grey);
 }
 
 .confirm {

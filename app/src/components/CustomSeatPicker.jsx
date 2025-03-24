@@ -10,8 +10,8 @@ const Legend = () => {
   return (
     <div className="legend mb-3 d-flex flex-column">
       <h5>Legend</h5>
-      <div className="unavailable d-flex align-items-center">
-        <WeekendIcon className="seat unavailable" />
+      <div className="d-flex align-items-center">
+        <WeekendIcon className="seat inactive" />
         <span>Unavailable</span>
       </div>
 
@@ -30,7 +30,7 @@ const Legend = () => {
 
 const CustomSeatPicker = ({ rows = 7, cols = 10 }) => {
   const [selectedSeats, setSelectedSeats] = useState([]);
-  const unavailaleSeats = ["F6", "F7", "F8"];
+  const unavailableSeats = ["F6", "F7", "F8"];
   const { setSeats, movieId, childTickets, adultTickets } =
     useContext(UserSelectionContext);
   const navigate = useNavigate();
@@ -109,13 +109,13 @@ const CustomSeatPicker = ({ rows = 7, cols = 10 }) => {
                   colIndex + 1
                 }`;
                 const selected = selectedSeats.includes(seatId);
-                const unavailable = unavailaleSeats.includes(seatId);
+                const unavailable = unavailableSeats.includes(seatId);
 
                 return (
                   <Button
                     key={seatId}
                     className={`seat ${selected ? "selected" : ""} ${
-                      unavailable ? "unavailable" : ""
+                      unavailable ? "inactive" : ""
                     } d-flex flex-column align-items-center justify-content-center ${
                       colIndex === 4 ? "mr-5" : ""
                     }`}
@@ -149,11 +149,12 @@ const CustomSeatPicker = ({ rows = 7, cols = 10 }) => {
             variant="outline-secondary"
             className={`m-2 ${selectedSeats.length === 0 ? "inactive" : ""}`}
             onClick={() => setSelectedSeats([])}
+            size="lg"
           >
             Reset All
           </Button>
         </div>
-        <Button className="confirm mt-auto" onClick={handleConfirm}>
+        <Button className="confirm mt-auto" onClick={handleConfirm} size="lg">
           Confirm Selection
         </Button>
       </div>

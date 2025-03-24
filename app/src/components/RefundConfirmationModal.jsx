@@ -87,7 +87,7 @@ const RefundConfirmationModal = ({ show, onHide, onConfirm }) => {
               Funds will be returned to your card.
             </p>
             <div className="d-flex justify-content-center">
-              <Button variant="light" onClick={onConfirm}>
+              <Button variant="light" onClick={onConfirm} size="lg">
                 Done
               </Button>
             </div>
@@ -98,13 +98,14 @@ const RefundConfirmationModal = ({ show, onHide, onConfirm }) => {
       {/* Footer Buttons */}
       {!processing && !approved && (
         <Modal.Footer className="border-0 justify-content-center">
-          <Button variant="secondary" onClick={onHide}>
+          <Button variant="secondary" onClick={onHide} size="lg">
             Cancel
           </Button>
           <Button
             variant="primary"
             onClick={() => setProcessing(true)}
             disabled={!agreed}
+            size="lg"
           >
             Confirm Refund
           </Button>

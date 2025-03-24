@@ -48,7 +48,7 @@ const LoginPopup = ({ show, handleClose }) => {
               required
             />
           </Form.Group>
-          <Button variant="primary" type="submit" className="mt-3">
+          <Button variant="primary" type="submit" className="mt-3" size="lg">
             Login
           </Button>
         </Form>

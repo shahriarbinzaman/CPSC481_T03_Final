@@ -99,11 +99,11 @@ const OrderSummary = () => {
         >
           <Button
             variant="primary"
+            className="mr-3"
             size="lg"
             onClick={() => navigate("/snack")}
             style={{
-              width: "100%",
-              padding: "30px",
+              width: "75%",
               textAlign: "center",
             }}
           >
@@ -111,11 +111,11 @@ const OrderSummary = () => {
           </Button>
           <Button
             variant="primary"
+            className="mr-3"
             size="lg"
             onClick={() => navigate("/select-payment")}
             style={{
-              width: "100%",
-              padding: "30px",
+              width: "75%",
               textAlign: "center",
             }}
           >

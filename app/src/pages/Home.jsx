@@ -38,6 +38,7 @@ export const Home = () => {
         <Button
           variant="primary"
           className="d-flex flex-column align-items-center"
+          size="lg"
           onClick={() => setShowLogin(true)}
         >
           <FaUserCircle className="me-2" />
@@ -46,6 +47,7 @@ export const Home = () => {
         <Button
           variant="primary"
           className="d-flex flex-column align-items-center"
+          size="lg"
           onClick={() => navigate("/snack")}
         >
           <IoFastFood />
@@ -54,6 +56,7 @@ export const Home = () => {
         <Button
           variant="primary"
           className="d-flex flex-column align-items-center"
+          size="lg"
           onClick={() => navigate("/movie-schedule")}
         >
           <FaSearch className="me-2" />
@@ -62,6 +65,7 @@ export const Home = () => {
         <Button
           variant="primary"
           className="d-flex flex-column align-items-center"
+          size="lg"
           onClick={() => navigate("/refund")}
         >
           <RiRefund2Line className="me-2" />

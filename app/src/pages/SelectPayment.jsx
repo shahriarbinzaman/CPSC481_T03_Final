@@ -183,6 +183,7 @@ const SelectPayment = () => {
                     onClick={handleRedeemCredits}
                     disabled={redeemed}
                     className="w-100 mb-3"
+                    size="lg"
                   >
                     {redeemed ? "Credits Redeemed!" : "Redeem 10 Credits"}
                   </Button>

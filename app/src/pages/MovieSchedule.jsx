@@ -1,5 +1,4 @@
 import React, { useState, useMemo } from "react";
-import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import movieData from "../assets/movieMetaData.json";
 import Logo from "../components/Logo";
