@@ -6,7 +6,7 @@ import { UserSelectionContext } from "../context";
 import NumberStepper from "./NumberStepper";
 
 const SeletctTicketNumberModal = ({ show, handleClose }) => {
-  const { setChildTickets, setAdultTickets, movieId, format, time, date } =
+  const { setChildTickets, setAdultTickets, movieId } =
     useContext(UserSelectionContext);
   const [childTicketNumber, setChildTicketsNumber] = useState(0);
   const [adultTicketNumber, setAdultTicketsNumber] = useState(0);

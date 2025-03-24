@@ -10,10 +10,6 @@ const RefundTicketInfo = () => {
   const [showModal, setShowModal] = useState(false);
   const [agreed, setAgreed] = useState(false);
 
-  const handleHomeClick = () => {
-    navigate("/");
-  };
-
   const handleRefundRequest = () => {
     setShowModal(true);
   };
