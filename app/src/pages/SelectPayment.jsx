@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { Button, Alert, NavbarBrand } from "react-bootstrap";
+import { Button, Alert } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import Logo from "../components/Logo";
 import movieData from "../assets/movieMetaData.json";
@@ -119,6 +119,13 @@ const SelectPayment = () => {
                       ? (totalMoviePrice - ticketPricePerSeat).toFixed(2)
                       : totalMoviePrice.toFixed(2)}
                   </h5>
+                  <Button
+                    variant="outline-light"
+                    className="mb-2"
+                    onClick={() => navigate(`/movie/${movieId}/seat-selection`)}
+                  >
+                    Edit Ticket Selection
+                  </Button>
                   {redeemed && (
                     <h5 style={{ color: "green" }}>
                       - Redeemed Ticket Discount: $
@@ -152,6 +159,12 @@ const SelectPayment = () => {
                     <strong>Total Snack Price:</strong> $
                     {totalSnackPrice.toFixed(2)}
                   </h5>
+                  <Button
+                    variant="outline-light"
+                    onClick={() => navigate("/snack")}
+                  >
+                    Edit Snack Selection
+                  </Button>
                 </div>
               )}
 

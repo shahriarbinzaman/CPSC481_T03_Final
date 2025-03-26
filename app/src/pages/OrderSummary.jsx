@@ -1,6 +1,5 @@
 import { useContext } from "react";
-import { Button, Nav } from "react-bootstrap";
-import { FaArrowLeft, FaHome } from "react-icons/fa";
+import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
 import Logo from "../components/Logo";
