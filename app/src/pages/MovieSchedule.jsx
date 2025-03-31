@@ -1,8 +1,10 @@
 import React, { useState, useMemo } from "react";
-import { useNavigate } from "react-router-dom";
 import movieData from "../assets/movieMetaData.json";
 import Logo from "../components/Logo";
 import Navbar from "../components/Navbar";
+import { UserSelectionContext } from "../context";
+import { useContext } from "react";
+import SelectTicketNumberModal from "../components/SelectTicketNumberModal";
 
 // Helper function to convert a time string (e.g., "1:30 PM") to minutes since midnight
 const parseTime = (timeStr) => {
@@ -85,25 +87,53 @@ const OnScreenKeyboard = ({ onKeyClick, onBackspace, onSpace, onClear }) => {
   };
 
   return (
-    <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+    <div
+      style={{ display: "flex", flexDirection: "column", alignItems: "center" }}
+    >
       <div style={containerStyle}>
         {/* Numbers Row */}
-        <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center" }}>
+        <div
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            justifyContent: "center",
+          }}
+        >
           {numberKeys.map((key) => (
-            <button key={key} onClick={() => onKeyClick(key)} style={keyButtonStyle}>
+            <button
+              key={key}
+              onClick={() => onKeyClick(key)}
+              style={keyButtonStyle}
+            >
               {key}
             </button>
           ))}
         </div>
         {/* Letters Row */}
-        <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center" }}>
+        <div
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            justifyContent: "center",
+          }}
+        >
           {letterKeys.map((key) => (
-            <button key={key} onClick={() => onKeyClick(key)} style={keyButtonStyle}>
+            <button
+              key={key}
+              onClick={() => onKeyClick(key)}
+              style={keyButtonStyle}
+            >
               {key}
             </button>
           ))}
         </div>
-        <div style={{ display: "flex", justifyContent: "center", marginTop: "10px" }}>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            marginTop: "10px",
+          }}
+        >
           <button onClick={onSpace} style={actionButtonStyle}>
             Space
           </button>
@@ -121,7 +151,9 @@ const OnScreenKeyboard = ({ onKeyClick, onBackspace, onSpace, onClear }) => {
 
 const MovieSchedule = () => {
   const [searchQuery, setSearchQuery] = useState("");
-  const navigate = useNavigate();
+  const { setMovieId, setMovieTitle, setFormat, setShowtime } =
+    useContext(UserSelectionContext);
+  const [openModal, setOpenModal] = useState(false);
 
   // Create a flat list of showtime events from the movie data.
   const events = useMemo(() => {
@@ -177,6 +209,14 @@ const MovieSchedule = () => {
 
   const handleKeyboardClear = () => {
     setSearchQuery("");
+  };
+
+  const handleMovieClick = (id, title, time, format) => {
+    setShowtime(time);
+    setFormat(format);
+    setMovieId(id);
+    setMovieTitle(title);
+    setOpenModal(true);
   };
 
   return (
@@ -245,7 +285,16 @@ const MovieSchedule = () => {
                 alignItems: "center",
                 marginLeft: "auto",
                 marginRight: "auto",
+                cursor: "pointer",
               }}
+              onClick={() =>
+                handleMovieClick(
+                  event.id,
+                  event.title,
+                  event.format,
+                  event.showtime
+                )
+              }
             >
               <img
                 src={require(`../assets/movies/${event.imagePath}`)}
@@ -269,6 +318,11 @@ const MovieSchedule = () => {
               </div>
             </div>
           ))}
+
+          <SelectTicketNumberModal
+            show={openModal}
+            handleClose={() => setOpenModal(false)}
+          />
         </div>
       </div>
     </div>
