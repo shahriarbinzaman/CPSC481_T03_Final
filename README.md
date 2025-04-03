@@ -78,3 +78,17 @@ To run this project locally, follow the steps below:
 - **Payment Page**: Handles ticket and snack payments with an option for points redemption.
 - **Refund Page**: Interface for users to request ticket refunds.
 
+## Deployment
+
+- **Live Site**: [https://cpsc481-t03-01.netlify.app/](https://cpsc481-t03-01.netlify.app/)
+
+### Steps Taken to Deploy
+
+1. Created a Netlify project to host the application.
+2. Linked the GitHub repository for continuous deployment.
+3. Configured build settings:
+    - **Base Directory**: `app`
+    - **Build Command**: `npm run build`
+    - **Publish Directory**: `app/build`
+4. Deployed the site and verified successful build and hosting.
+
