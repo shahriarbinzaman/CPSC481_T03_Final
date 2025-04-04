@@ -22,34 +22,9 @@ const parseTime = (timeStr) => {
 // Simple on-screen keyboard component (permanent on-screen)
 const OnScreenKeyboard = ({ onKeyClick, onBackspace, onSpace, onClear }) => {
   const numberKeys = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
-  const letterKeys = [
-    "Q",
-    "W",
-    "E",
-    "R",
-    "T",
-    "Y",
-    "U",
-    "I",
-    "O",
-    "P",
-    "A",
-    "S",
-    "D",
-    "F",
-    "G",
-    "H",
-    "J",
-    "K",
-    "L",
-    "Z",
-    "X",
-    "C",
-    "V",
-    "B",
-    "N",
-    "M",
-  ];
+  const topRow = ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"];
+  const middleRow = ["A", "S", "D", "F", "G", "H", "J", "K", "L"];
+  const bottomRow = ["Z", "X", "C", "V", "B", "N", "M"];
 
   const keyButtonStyle = {
     margin: "5px",
@@ -64,86 +39,68 @@ const OnScreenKeyboard = ({ onKeyClick, onBackspace, onSpace, onClear }) => {
     transition: "background-color 0.3s, transform 0.1s",
   };
 
-  const actionButtonStyle = {
-    margin: "5px",
-    padding: "12px 18px",
-    fontSize: "16px",
-    backgroundColor: "#d0d0d0",
-    border: "none",
-    borderRadius: "8px",
-    boxShadow: "0 2px 5px rgba(0,0,0,0.1)",
-    cursor: "pointer",
-    outline: "none",
-    transition: "background-color 0.3s, transform 0.1s",
-  };
-
-  const containerStyle = {
-    backgroundColor: "transparent",
-    padding: "15px",
-    borderRadius: "10px",
-    marginTop: "10px",
-    width: "100vw",
-    maxWidth: "600px",
-  };
+  const actionButtonStyle = { ...keyButtonStyle, backgroundColor: "#d0d0d0" };
 
   return (
     <div
       style={{ display: "flex", flexDirection: "column", alignItems: "center" }}
     >
-      <div style={containerStyle}>
-        {/* Numbers Row */}
-        <div
-          style={{
-            display: "flex",
-            flexWrap: "wrap",
-            justifyContent: "center",
-          }}
-        >
-          {numberKeys.map((key) => (
-            <button
-              key={key}
-              onClick={() => onKeyClick(key)}
-              style={keyButtonStyle}
-            >
-              {key}
-            </button>
-          ))}
-        </div>
-        {/* Letters Row */}
-        <div
-          style={{
-            display: "flex",
-            flexWrap: "wrap",
-            justifyContent: "center",
-          }}
-        >
-          {letterKeys.map((key) => (
-            <button
-              key={key}
-              onClick={() => onKeyClick(key)}
-              style={keyButtonStyle}
-            >
-              {key}
-            </button>
-          ))}
-        </div>
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            marginTop: "10px",
-          }}
-        >
-          <button onClick={onSpace} style={actionButtonStyle}>
-            Space
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        {numberKeys.map((key) => (
+          <button
+            key={key}
+            onClick={() => onKeyClick(key)}
+            style={keyButtonStyle}
+          >
+            {key}
           </button>
-          <button onClick={onBackspace} style={actionButtonStyle}>
-            Backspace
+        ))}
+      </div>
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        {topRow.map((key) => (
+          <button
+            key={key}
+            onClick={() => onKeyClick(key)}
+            style={keyButtonStyle}
+          >
+            {key}
           </button>
-          <button onClick={onClear} style={actionButtonStyle}>
-            Clear
+        ))}
+      </div>
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        {middleRow.map((key) => (
+          <button
+            key={key}
+            onClick={() => onKeyClick(key)}
+            style={keyButtonStyle}
+          >
+            {key}
           </button>
-        </div>
+        ))}
+      </div>
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        {bottomRow.map((key) => (
+          <button
+            key={key}
+            onClick={() => onKeyClick(key)}
+            style={keyButtonStyle}
+          >
+            {key}
+          </button>
+        ))}
+      </div>
+      <div
+        style={{ display: "flex", justifyContent: "center", marginTop: "10px" }}
+      >
+        <button onClick={onSpace} style={actionButtonStyle}>
+          Space
+        </button>
+        <button onClick={onBackspace} style={actionButtonStyle}>
+          Backspace
+        </button>
+        <button onClick={onClear} style={actionButtonStyle}>
+          Clear
+        </button>
       </div>
     </div>
   );
