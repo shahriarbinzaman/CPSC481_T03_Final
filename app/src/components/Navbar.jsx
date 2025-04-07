@@ -1,17 +1,23 @@
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import ArrowBackOutlinedIcon from "@mui/icons-material/ArrowBackOutlined";
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
-import { Link, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useState, useContext } from "react";
 import { Modal, Button } from "react-bootstrap";
+import { UserSelectionContext } from "../context";
 
 export const Navbar = () => {
+  const { resetUserSelection } = useContext(UserSelectionContext);
   const navigate = useNavigate();
   const [showHelp, setShowHelp] = useState(false);
 
   const handleShowHelp = () => setShowHelp(true);
   const handleCloseHelp = () => setShowHelp(false);
 
+  const handleHomeClick = () => {
+    resetUserSelection();
+    navigate("/");
+  };
   return (
     <nav className="navbar">
       <div className="d-flex justify-content-between w-100">
@@ -22,9 +28,9 @@ export const Navbar = () => {
             onClick={handleShowHelp}
             style={{ marginRight: "10px" }}
           />
-          <Link to="/">
+          <div onClick={handleHomeClick} style={{ cursor: "pointer" }}>
             <HomeOutlinedIcon fontSize="large" />
-          </Link>
+          </div>
         </div>
       </div>
 
