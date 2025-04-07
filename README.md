@@ -2,6 +2,13 @@
 
 This project is a React-based web application that provides a user-friendly interface for a theater ticketing system. It allows users to browse movies, purchase tickets, and manage their theater experience conveniently.
 
+## Membership Info for Login :
+
+1. membershipID: 123456
+2. membershipID: 654321
+3. membershipID: 987654
+
+
 ## Features
 
 ### User Authentication
