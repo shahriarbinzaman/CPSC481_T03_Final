@@ -92,3 +92,10 @@ To run this project locally, follow the steps below:
     - **Publish Directory**: `app/build`
 4. Deployed the site and verified successful build and hosting.
 
+
+## Membership Info for Login :
+
+1. membershipID: 123456
+2. membershipID: 654321
+3. membershipID: 987654
+
