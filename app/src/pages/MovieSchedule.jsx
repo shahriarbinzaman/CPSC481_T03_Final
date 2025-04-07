@@ -142,12 +142,33 @@ const MovieSchedule = () => {
 
   // Filter events: only keep events that are upcoming and match the search query.
   const filteredEvents = useMemo(() => {
-    let result = events.filter((event) => event.timeValue >= currentMinutes);
-    if (searchQuery) {
+    const movieMap = new Map();
+
+    events.forEach((event) => {
+      let showtimeValue = event.timeValue;
+      let adjustedTime = showtimeValue;
+
+      if (showtimeValue < currentMinutes) {
+        adjustedTime += 1440;
+      }
+
+      const existing = movieMap.get(event.id);
+      if (!existing || adjustedTime < existing.adjustedTime) {
+        movieMap.set(event.id, { ...event, adjustedTime });
+      }
+    });
+
+    let result = Array.from(movieMap.values());
+
+    const cleanedQuery = searchQuery.trim().toLowerCase();
+    if (cleanedQuery) {
       result = result.filter((event) =>
-        event.title.toLowerCase().includes(searchQuery.toLowerCase())
+        event.title.toLowerCase().includes(cleanedQuery)
       );
     }
+
+    result.sort((a, b) => a.adjustedTime - b.adjustedTime);
+
     return result;
   }, [searchQuery, events, currentMinutes]);
 
