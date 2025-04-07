@@ -2,8 +2,13 @@ import React from "react";
 import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import Logo from "../components/Logo";
+import { UserSelectionContext } from "../context";
+import { useContext } from "react";
 
 const EnjoyMovie = () => {
+  const { adultTickets, childTickets } = useContext(UserSelectionContext);
+  const totalTickets = adultTickets + childTickets;
+  console.log("Total tickets:", totalTickets);
   const navigate = useNavigate();
 
   const handleClick = () => {
@@ -23,12 +28,20 @@ const EnjoyMovie = () => {
           className="d-flex"
           style={{ justifyContent: "center", gap: "40px" }}
         >
-          <Button variant="primary" size="lg" onClick={handleClick}>
-            Print Ticket
-          </Button>
-          <Button variant="primary" size="lg" onClick={handleClick}>
-            Print Ticket + Receipt
-          </Button>
+          {totalTickets !== 0 ? (
+            <>
+              <Button variant="primary" size="lg" onClick={handleClick}>
+                Print Ticket
+              </Button>
+              <Button variant="primary" size="lg" onClick={handleClick}>
+                Print Ticket + Receipt
+              </Button>
+            </>
+          ) : (
+            <Button variant="primary" size="lg" onClick={handleClick}>
+              Print Receipt
+            </Button>
+          )}
         </div>
       </div>
     </div>
